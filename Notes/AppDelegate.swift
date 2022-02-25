@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         window?.backgroundColor = .systemBackground
         
-        let navVC = UINavigationController(rootViewController: ViewController())
+        let navVC = UINavigationController(rootViewController: NoteListViewController())
         
         window?.rootViewController = navVC
         

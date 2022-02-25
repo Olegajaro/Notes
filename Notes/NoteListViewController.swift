@@ -7,12 +7,15 @@
 
 import UIKit
 
-private let cellID = "Cell"
-
-class ViewController: UIViewController {
+class NoteListViewController: UIViewController {
+    
+    struct Constans {
+        static let entity = "Note"
+        static let sortName = "noteName"
+    }
     
     let tableView = UITableView()
-    let numbers = [1, 2, 3, 4]
+    let numbers = ["test1", "test2", "test3", "test4"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +25,7 @@ class ViewController: UIViewController {
 }
 
 // MARK: - Setup Table View
-extension ViewController {
+extension NoteListViewController {
     private func setup() {
         navigationItem.title = "Notes"
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -31,7 +34,11 @@ extension ViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
+        tableView.register(
+            NoteListCell.self,
+            forCellReuseIdentifier: NoteListCell.cellID
+        )
+        tableView.rowHeight = NoteListCell.rowHeight
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
@@ -54,7 +61,7 @@ extension ViewController {
 }
 
 // MARK: - UITableViewDataSource
-extension ViewController: UITableViewDataSource {
+extension NoteListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
         numbers.count
@@ -64,20 +71,19 @@ extension ViewController: UITableViewDataSource {
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(
-            withIdentifier: cellID,
+            withIdentifier: NoteListCell.cellID,
             for: indexPath
-        )
+        ) as! NoteListCell
         
-        var content = cell.defaultContentConfiguration()
-        content.text = numbers[indexPath.row].description
+        cell.noteNameLabel.text = numbers[indexPath.row]
+        cell.noteTextLabel.text = numbers[indexPath.row]
         
-        cell.contentConfiguration = content
         return cell
     }
 }
 
 // MARK: - UITableViewDelegate
-extension ViewController: UITableViewDelegate {
+extension NoteListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView,
                    didSelectRowAt indexPath: IndexPath) {
         
