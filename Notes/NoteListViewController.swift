@@ -99,9 +99,17 @@ extension NoteListViewController {
 
 // MARK: - UITableViewDataSource
 extension NoteListViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        fetchResultController.sections?.count ?? 0
+    }
+    
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
-        numbers.count
+        if let sections = fetchResultController.sections {
+            return sections[section].numberOfObjects
+        } else {
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView,
@@ -112,8 +120,13 @@ extension NoteListViewController: UITableViewDataSource {
             for: indexPath
         ) as! NoteListCell
         
-        cell.noteNameLabel.text = numbers[indexPath.row]
-        cell.noteTextLabel.text = numbers[indexPath.row]
+        let note = fetchResultController.object(at: indexPath) as! Note
+        
+//        cell.noteNameLabel.text = numbers[indexPath.row]
+//        cell.noteTextLabel.text = numbers[indexPath.row]
+        
+        cell.noteNameLabel.text = note.noteName
+        cell.noteTextLabel.text = note.noteText
         
         return cell
     }
