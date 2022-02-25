@@ -48,14 +48,24 @@ class NoteListViewController: UIViewController {
         super.viewDidLoad()
         
         setupNavigationBar()
-        setup()
         setupFetchResultController()
+        setup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.prefersLargeTitles = true
     }
+    
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        navigationController?.navigationBar.prefersLargeTitles = true
+//    }
+//
+//    override func viewDidDisappear(_ animated: Bool) {
+//        super.viewDidDisappear(animated)
+//        navigationController?.navigationBar.prefersLargeTitles = false
+//    }
 }
 
 // MARK: - Setup Table View
@@ -154,6 +164,18 @@ extension NoteListViewController: UITableViewDelegate {
         let controller = AddNoteViewController()
         controller.note = note
         navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    func tableView(
+        _ tableView: UITableView,
+        commit editingStyle: UITableViewCell.EditingStyle,
+        forRowAt indexPath: IndexPath
+    ) {
+        if editingStyle == .delete {
+            let note = fetchResultController.object(at: indexPath) as! Note
+            CoreDataManager.shared.context.delete(note)
+            CoreDataManager.shared.saveContext()
+        }
     }
 }
 
