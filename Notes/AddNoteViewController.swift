@@ -34,10 +34,46 @@ class AddNoteViewController: UIViewController {
         setupNavigationBar()
         style()
         layout()
+        
+        // Reading object
+//        if let note = note {
+//            noteNameTextField.text = note.noteName
+//            noteTextTextField.text = note.noteText
+//        }
     }
     
     @objc func saveTapped() {
-        navigationController?.popViewController(animated: true)
+        if saveNote() {
+            navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    private func saveNote() -> Bool {
+        if noteNameTextField.text!.isEmpty {
+            let alertController = UIAlertController(
+                title: "Input Error",
+                message: "Please enter note name",
+                preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: "OK", style: .cancel)
+            alertController.addAction(okAction)
+            present(alertController, animated: true)
+            
+            return false
+        }
+        
+        // create object
+        if note == nil {
+            note = Note()
+        }
+        
+        if let note = note {
+            note.noteName = noteNameTextField.text
+            note.noteText = noteTextTextField.text
+            CoreDataManager.shared.saveContext()
+        }
+        
+        return true
     }
 }
 
