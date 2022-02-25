@@ -49,6 +49,7 @@ class NoteListViewController: UIViewController {
         
         setupNavigationBar()
         setup()
+        setupFetchResultController()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -93,6 +94,16 @@ extension NoteListViewController {
     
     private func setupNavigationBar() {
         navigationItem.rightBarButtonItem = addNoteBarButtonItem
+    }
+    
+    private func setupFetchResultController() {
+        fetchResultController.delegate = self
+        
+        do {
+            try fetchResultController.performFetch()
+        } catch {
+            print(error.localizedDescription)
+        }
     }
     
     @objc private func addNoteTapped() {
@@ -141,3 +152,53 @@ extension NoteListViewController: UITableViewDelegate {
     }
 }
 
+// MARK: - NSFetchedResultsControllerDelegate
+extension NoteListViewController: NSFetchedResultsControllerDelegate {
+    func controllerWillChangeContent(
+        _ controller: NSFetchedResultsController<NSFetchRequestResult>
+    ) {
+        tableView.beginUpdates()
+    }
+    
+    func controller(
+        _ controller: NSFetchedResultsController<NSFetchRequestResult>,
+        didChange anObject: Any,
+        at indexPath: IndexPath?,
+        for type: NSFetchedResultsChangeType,
+        newIndexPath: IndexPath?
+    ) {
+        switch type {
+        case .insert:
+            if let newIndexPath = newIndexPath {
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+            }
+        case .delete:
+            if let indexPath = indexPath {
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
+        case .move:
+            if let indexPath = indexPath {
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
+            if let newIndexPath = newIndexPath {
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+            }
+        case .update:
+            if let indexPath = indexPath {
+                let note = fetchResultController.object(at: indexPath) as! Note
+                let cell = tableView.cellForRow(at: indexPath) as! NoteListCell
+                
+                cell.noteNameLabel.text = note.noteName
+                cell.noteTextLabel.text = note.noteText
+            }
+        @unknown default:
+            fatalError()
+        }
+    }
+    
+    func controllerDidChangeContent(
+        _ controller: NSFetchedResultsController<NSFetchRequestResult>
+    ) {
+        tableView.endUpdates()
+    }
+}

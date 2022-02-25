@@ -12,8 +12,8 @@ class NoteListCell: UITableViewCell {
     static let cellID = "NoteListCell"
     static let rowHeight: CGFloat = 70
     
-    let noteNameLabel = UILabel()
-    let noteTextLabel = UILabel()
+    var noteNameLabel = UILabel()
+    var noteTextLabel = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super .init(style: style, reuseIdentifier: reuseIdentifier)
