@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class NoteListViewController: UIViewController {
     
@@ -15,11 +16,38 @@ class NoteListViewController: UIViewController {
     }
     
     let tableView = UITableView()
+    lazy var addNoteBarButtonItem: UIBarButtonItem = {
+        let barButtonItem = UIBarButtonItem(
+            title: "Add note",
+            style: .plain,
+            target: self,
+            action: #selector(addNoteTapped)
+        )
+        
+        barButtonItem.tintColor = .label
+        return barButtonItem
+    }()
+    
+    var fetchResultController: NSFetchedResultsController<NSFetchRequestResult> = {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: Constans.entity)
+        let sortDescriptor = NSSortDescriptor(key: Constans.sortName, ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        let fetchedResultController = NSFetchedResultsController(
+            fetchRequest: fetchRequest,
+            managedObjectContext: CoreDataManager.shared.context,
+            sectionNameKeyPath: nil,
+            cacheName: nil
+        )
+        return fetchedResultController
+    }()
+    
     let numbers = ["test1", "test2", "test3", "test4"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupNavigationBar()
         setup()
     }
 }
@@ -57,6 +85,15 @@ extension NoteListViewController {
                 equalTo: view.safeAreaLayoutGuide.bottomAnchor
             )
         ])
+    }
+    
+    private func setupNavigationBar() {
+        navigationItem.rightBarButtonItem = addNoteBarButtonItem
+    }
+    
+    @objc private func addNoteTapped() {
+        navigationController?.pushViewController(AddNoteViewController(),
+                                                 animated: false)
     }
 }
 

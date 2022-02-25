@@ -17,6 +17,7 @@
 		1039AE7F27C89F3300201874 /* Note+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1039AE7D27C89F3300201874 /* Note+CoreDataProperties.swift */; };
 		1039AE8427C89FBF00201874 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1039AE8327C89FBF00201874 /* CoreDataManager.swift */; };
 		1039AE8727C8A60B00201874 /* NoteListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1039AE8627C8A60B00201874 /* NoteListCell.swift */; };
+		1039AE8927C8B0DD00201874 /* AddNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1039AE8827C8B0DD00201874 /* AddNoteViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		1039AE7D27C89F3300201874 /* Note+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1039AE8327C89FBF00201874 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		1039AE8627C8A60B00201874 /* NoteListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListCell.swift; sourceTree = "<group>"; };
+		1039AE8827C8B0DD00201874 /* AddNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 			children = (
 				1039AE6327C89B2B00201874 /* AppDelegate.swift */,
 				1039AE6727C89B2B00201874 /* NoteListViewController.swift */,
+				1039AE8827C8B0DD00201874 /* AddNoteViewController.swift */,
 				1039AE8627C8A60B00201874 /* NoteListCell.swift */,
 				1039AE8227C89FAD00201874 /* Services */,
 				1039AE8027C89F5300201874 /* CoreDataModel */,
@@ -186,6 +189,7 @@
 				1039AE6827C89B2B00201874 /* NoteListViewController.swift in Sources */,
 				1039AE7E27C89F3300201874 /* Note+CoreDataClass.swift in Sources */,
 				1039AE6427C89B2B00201874 /* AppDelegate.swift in Sources */,
+				1039AE8927C8B0DD00201874 /* AddNoteViewController.swift in Sources */,
 				1039AE8727C8A60B00201874 /* NoteListCell.swift in Sources */,
 				1039AE6E27C89B2B00201874 /* Notes.xcdatamodeld in Sources */,
 				1039AE7F27C89F3300201874 /* Note+CoreDataProperties.swift in Sources */,
