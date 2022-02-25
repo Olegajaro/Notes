@@ -149,6 +149,11 @@ extension NoteListViewController: UITableViewDelegate {
                    didSelectRowAt indexPath: IndexPath) {
         
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        let note = fetchResultController.object(at: indexPath) as! Note
+        let controller = AddNoteViewController()
+        controller.note = note
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
 

@@ -36,10 +36,10 @@ class AddNoteViewController: UIViewController {
         layout()
         
         // Reading object
-//        if let note = note {
-//            noteNameTextField.text = note.noteName
-//            noteTextTextField.text = note.noteText
-//        }
+        if let note = note {
+            noteNameTextField.text = note.noteName
+            noteTextTextField.text = note.noteText
+        }
     }
     
     @objc func saveTapped() {
