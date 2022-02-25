@@ -13,6 +13,9 @@
 		1039AE7027C89B2B00201874 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1039AE6F27C89B2B00201874 /* Assets.xcassets */; };
 		1039AE7327C89B2B00201874 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1039AE7127C89B2B00201874 /* LaunchScreen.storyboard */; };
 		1039AE7B27C89E7700201874 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 1039AE7A27C89E7700201874 /* .gitignore */; };
+		1039AE7E27C89F3300201874 /* Note+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1039AE7C27C89F3300201874 /* Note+CoreDataClass.swift */; };
+		1039AE7F27C89F3300201874 /* Note+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1039AE7D27C89F3300201874 /* Note+CoreDataProperties.swift */; };
+		1039AE8427C89FBF00201874 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1039AE8327C89FBF00201874 /* CoreDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		1039AE7227C89B2B00201874 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1039AE7427C89B2B00201874 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1039AE7A27C89E7700201874 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		1039AE7C27C89F3300201874 /* Note+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataClass.swift"; sourceTree = "<group>"; };
+		1039AE7D27C89F3300201874 /* Note+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		1039AE8327C89FBF00201874 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,12 +65,47 @@
 			children = (
 				1039AE6327C89B2B00201874 /* AppDelegate.swift */,
 				1039AE6727C89B2B00201874 /* ViewController.swift */,
+				1039AE8227C89FAD00201874 /* Services */,
+				1039AE8027C89F5300201874 /* CoreDataModel */,
+				1039AE8527C89FD200201874 /* Files */,
+			);
+			path = Notes;
+			sourceTree = "<group>";
+		};
+		1039AE8027C89F5300201874 /* CoreDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				1039AE6C27C89B2B00201874 /* Notes.xcdatamodeld */,
+				1039AE8127C89F5E00201874 /* Entity */,
+			);
+			path = CoreDataModel;
+			sourceTree = "<group>";
+		};
+		1039AE8127C89F5E00201874 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				1039AE7C27C89F3300201874 /* Note+CoreDataClass.swift */,
+				1039AE7D27C89F3300201874 /* Note+CoreDataProperties.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		1039AE8227C89FAD00201874 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				1039AE8327C89FBF00201874 /* CoreDataManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		1039AE8527C89FD200201874 /* Files */ = {
+			isa = PBXGroup;
+			children = (
 				1039AE6F27C89B2B00201874 /* Assets.xcassets */,
 				1039AE7127C89B2B00201874 /* LaunchScreen.storyboard */,
 				1039AE7427C89B2B00201874 /* Info.plist */,
-				1039AE6C27C89B2B00201874 /* Notes.xcdatamodeld */,
 			);
-			path = Notes;
+			path = Files;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +179,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1039AE8427C89FBF00201874 /* CoreDataManager.swift in Sources */,
 				1039AE6827C89B2B00201874 /* ViewController.swift in Sources */,
+				1039AE7E27C89F3300201874 /* Note+CoreDataClass.swift in Sources */,
 				1039AE6427C89B2B00201874 /* AppDelegate.swift in Sources */,
 				1039AE6E27C89B2B00201874 /* Notes.xcdatamodeld in Sources */,
+				1039AE7F27C89F3300201874 /* Note+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,7 +326,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Notes/Info.plist;
+				INFOPLIST_FILE = Notes/Files/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -308,7 +352,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Notes/Info.plist;
+				INFOPLIST_FILE = Notes/Files/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
