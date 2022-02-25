@@ -31,9 +31,9 @@ class AddNoteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupNavigationBar()
         style()
         layout()
-        navigationItem.rightBarButtonItem = saveNoteBarButtonItem
     }
     
     @objc func saveTapped() {
@@ -42,6 +42,12 @@ class AddNoteViewController: UIViewController {
 }
 
 extension AddNoteViewController {
+    private func setupNavigationBar() {
+        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.title = "Add note"
+        navigationItem.rightBarButtonItem = saveNoteBarButtonItem
+    }
+    
     private func style() {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical

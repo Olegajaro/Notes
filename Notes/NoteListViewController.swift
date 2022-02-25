@@ -50,13 +50,17 @@ class NoteListViewController: UIViewController {
         setupNavigationBar()
         setup()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
 }
 
 // MARK: - Setup Table View
 extension NoteListViewController {
     private func setup() {
         navigationItem.title = "Notes"
-        navigationController?.navigationBar.prefersLargeTitles = true
         
         tableView.backgroundColor = .systemBackground
         tableView.delegate = self
@@ -121,10 +125,6 @@ extension NoteListViewController: UITableViewDataSource {
         ) as! NoteListCell
         
         let note = fetchResultController.object(at: indexPath) as! Note
-        
-//        cell.noteNameLabel.text = numbers[indexPath.row]
-//        cell.noteTextLabel.text = numbers[indexPath.row]
-        
         cell.noteNameLabel.text = note.noteName
         cell.noteTextLabel.text = note.noteText
         
