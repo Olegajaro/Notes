@@ -48,24 +48,14 @@ class NoteListViewController: UIViewController {
         super.viewDidLoad()
         
         setupNavigationBar()
-        setupFetchResultController()
         setup()
+        setupFetchResultController()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.prefersLargeTitles = true
     }
-    
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//        navigationController?.navigationBar.prefersLargeTitles = true
-//    }
-//
-//    override func viewDidDisappear(_ animated: Bool) {
-//        super.viewDidDisappear(animated)
-//        navigationController?.navigationBar.prefersLargeTitles = false
-//    }
 }
 
 // MARK: - Setup Table View
@@ -83,23 +73,9 @@ extension NoteListViewController {
         )
         tableView.rowHeight = NoteListCell.rowHeight
         
-        tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
         
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(
-                equalTo: view.safeAreaLayoutGuide.topAnchor
-            ),
-            tableView.leadingAnchor.constraint(
-                equalTo: view.safeAreaLayoutGuide.leadingAnchor
-            ),
-            tableView.trailingAnchor.constraint(
-                equalTo: view.safeAreaLayoutGuide.trailingAnchor
-            ),
-            tableView.bottomAnchor.constraint(
-                equalTo: view.safeAreaLayoutGuide.bottomAnchor
-            )
-        ])
+        tableView.frame = view.bounds
     }
     
     private func setupNavigationBar() {
@@ -184,7 +160,9 @@ extension NoteListViewController: NSFetchedResultsControllerDelegate {
     func controllerWillChangeContent(
         _ controller: NSFetchedResultsController<NSFetchRequestResult>
     ) {
-        tableView.beginUpdates()
+        if tableView.isOnWindow {
+            tableView.beginUpdates()
+        }
     }
     
     func controller(
@@ -197,7 +175,9 @@ extension NoteListViewController: NSFetchedResultsControllerDelegate {
         switch type {
         case .insert:
             if let newIndexPath = newIndexPath {
+                //                if tableView.isOnWindow {
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
+                //                }
             }
         case .delete:
             if let indexPath = indexPath {

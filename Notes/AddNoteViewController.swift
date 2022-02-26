@@ -12,7 +12,7 @@ class AddNoteViewController: UIViewController {
     let stackView = UIStackView()
     let label = UILabel()
     let noteNameTextField = UITextField()
-    let noteTextTextField = UITextField()
+    let noteTextTextView = UITextView()
     
     lazy var saveNoteBarButtonItem: UIBarButtonItem = {
         let barButtonItem = UIBarButtonItem(
@@ -38,7 +38,7 @@ class AddNoteViewController: UIViewController {
         // Reading object
         if let note = note {
             noteNameTextField.text = note.noteName
-            noteTextTextField.text = note.noteText
+            noteTextTextView.text = note.noteText
         }
     }
     
@@ -69,11 +69,15 @@ class AddNoteViewController: UIViewController {
         
         if let note = note {
             note.noteName = noteNameTextField.text
-            note.noteText = noteTextTextField.text
+            note.noteText = noteTextTextView.text
             CoreDataManager.shared.saveContext()
         }
         
         return true
+    }
+    
+    deinit {
+        print("add note end editing")
     }
 }
 
@@ -94,22 +98,27 @@ extension AddNoteViewController {
         label.font = UIFont.preferredFont(forTextStyle: .title1)
         
         noteNameTextField.translatesAutoresizingMaskIntoConstraints = false
+        noteNameTextField.borderStyle = .roundedRect
+        noteNameTextField.font = UIFont.preferredFont(forTextStyle: .title1)
         noteNameTextField.placeholder = "Enter note title"
+        noteNameTextField.setContentHuggingPriority(UILayoutPriority(251), for: .vertical)
         
-        noteTextTextField.translatesAutoresizingMaskIntoConstraints = false
-        noteTextTextField.placeholder = "Enter note text"
+        noteTextTextView.translatesAutoresizingMaskIntoConstraints = false
+        noteTextTextView.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        noteTextTextView.autocapitalizationType = .none
     }
     
     private func layout() {
-        stackView.addArrangedSubview(label)
         stackView.addArrangedSubview(noteNameTextField)
-        stackView.addArrangedSubview(noteTextTextField)
+        stackView.addArrangedSubview(noteTextTextView)
         
         view.addSubview(stackView)
         
         NSLayoutConstraint.activate([
-            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            stackView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
 }
