@@ -10,7 +10,6 @@ import UIKit
 class AddNoteViewController: UIViewController {
     
     let stackView = UIStackView()
-    let label = UILabel()
     let noteNameTextField = UITextField()
     let noteTextTextView = UITextView()
     
@@ -42,7 +41,7 @@ class AddNoteViewController: UIViewController {
         }
     }
     
-    @objc func saveTapped() {
+    @objc private func saveTapped() {
         if saveNote() {
             navigationController?.popViewController(animated: true)
         }
@@ -50,15 +49,7 @@ class AddNoteViewController: UIViewController {
     
     private func saveNote() -> Bool {
         if noteNameTextField.text!.isEmpty {
-            let alertController = UIAlertController(
-                title: "Input Error",
-                message: "Please enter note name",
-                preferredStyle: .alert)
-            
-            let okAction = UIAlertAction(title: "OK", style: .cancel)
-            alertController.addAction(okAction)
-            present(alertController, animated: true)
-            
+            showAlert()
             return false
         }
         
@@ -76,8 +67,15 @@ class AddNoteViewController: UIViewController {
         return true
     }
     
-    deinit {
-        print("add note end editing")
+    private func showAlert() {
+        let alertController = UIAlertController(
+            title: "Input Error",
+            message: "Please enter note name",
+            preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .cancel)
+        alertController.addAction(okAction)
+        present(alertController, animated: true)
     }
 }
 
@@ -93,24 +91,32 @@ extension AddNoteViewController {
         stackView.axis = .vertical
         stackView.spacing = 10
         
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Welcome"
-        label.font = UIFont.preferredFont(forTextStyle: .title1)
-        
         noteNameTextField.translatesAutoresizingMaskIntoConstraints = false
         noteNameTextField.font = UIFont.preferredFont(forTextStyle: .title1)
         noteNameTextField.placeholder = "Enter note title"
-        noteNameTextField.backgroundColor = UIColor(named: "ChatIncomingBubble")
-        noteNameTextField.setContentHuggingPriority(UILayoutPriority(251), for: .vertical)
+        noteNameTextField.backgroundColor = UIColor(named: "TextFieldColor")
+        noteNameTextField.setContentHuggingPriority(UILayoutPriority(251),
+                                                    for: .vertical)
         noteNameTextField.layer.cornerRadius = 10
-        noteNameTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: noteNameTextField.frame.height))
+        noteNameTextField.leftView = UIView(frame: CGRect(
+            x: 0, y: 0,
+            width: 8,
+            height: noteNameTextField.frame.height
+        ))
+        noteNameTextField.rightView = UIView(frame: CGRect(
+            x: 0, y: 0,
+            width: 8,
+            height: noteNameTextField.frame.height
+        ))
         noteNameTextField.leftViewMode = .always
+        noteNameTextField.rightViewMode = .always
         
         noteTextTextView.translatesAutoresizingMaskIntoConstraints = false
         noteTextTextView.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         noteTextTextView.autocapitalizationType = .none
-        noteTextTextView.backgroundColor = UIColor(named: "ChatIncomingBubble")
-        noteTextTextView.contentInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+        noteTextTextView.backgroundColor = UIColor(named: "TextFieldColor")
+        noteTextTextView.contentInset = UIEdgeInsets(top: 8, left: 8,
+                                                     bottom: 8, right: 8)
         noteTextTextView.layer.cornerRadius = 10
     }
     
@@ -121,10 +127,18 @@ extension AddNoteViewController {
         view.addSubview(stackView)
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            stackView.topAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.topAnchor
+            ),
+            stackView.leadingAnchor.constraint(
+                equalTo: view.layoutMarginsGuide.leadingAnchor
+            ),
+            stackView.trailingAnchor.constraint(
+                equalTo: view.layoutMarginsGuide.trailingAnchor
+            ),
+            stackView.bottomAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.bottomAnchor
+            )
         ])
     }
 }

@@ -9,6 +9,7 @@ import UIKit
 
 class NoteListCell: UITableViewCell {
     
+    
     static let cellID = "NoteListCell"
     static let rowHeight: CGFloat = 70
     
@@ -25,18 +26,6 @@ class NoteListCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-//    override func layoutSubviews() {
-//        self.contentView.backgroundColor = UIColor(named: "CellColor")
-//        self.contentView.layer.cornerRadius = 5
-//        self.contentView.layer.shadowOffset = CGSize(width: 1, height: 0)
-//        self.contentView.layer.shadowColor = UIColor.black.cgColor
-//        self.contentView.layer.shadowRadius = 5
-//        self.contentView.layer.shadowOpacity = 0.25
-////        CGRect shadowFrame = self.contentView.layer.bounds
-////        CGPathRef shadowPath = [UIBezierPath bezierPathWithRect:shadowFrame].CGPath;
-////        self.contentView.layer.shadowPath = shadowPath
-//    }
     
     private func setupViews() {
         backgroundColor = UIColor(named: "CellColor")

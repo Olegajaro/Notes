@@ -15,7 +15,8 @@ class NoteListViewController: UIViewController {
         static let sortName = "noteName"
     }
     
-    let tableView = UITableView()
+    // MARK: - UI Elements
+    let tableView = UITableView(frame: .zero, style: .insetGrouped)
     lazy var addNoteBarButtonItem: UIBarButtonItem = {
         let barButtonItem = UIBarButtonItem(
             title: "Add note",
@@ -28,6 +29,7 @@ class NoteListViewController: UIViewController {
         return barButtonItem
     }()
     
+    // MARK: - NSFetchedResultsController
     var fetchResultController: NSFetchedResultsController<NSFetchRequestResult> = {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: Constans.entity)
         let sortDescriptor = NSSortDescriptor(key: Constans.sortName, ascending: true)
@@ -41,9 +43,8 @@ class NoteListViewController: UIViewController {
         )
         return fetchedResultController
     }()
-    
-    let numbers = ["test1", "test2", "test3", "test4"]
-    
+        
+    // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -58,13 +59,12 @@ class NoteListViewController: UIViewController {
     }
 }
 
-// MARK: - Setup Table View
+// MARK: - Setup Views
 extension NoteListViewController {
     private func setup() {
         navigationItem.title = "Notes"
         
         tableView.backgroundColor = UIColor(named: "TableViewBackgroundColor")
-        tableView.layer.cornerRadius = 30
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -76,11 +76,10 @@ extension NoteListViewController {
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
-//        tableView.frame = view.bounds
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
@@ -99,9 +98,12 @@ extension NoteListViewController {
         }
     }
     
+    // MARK: - Actions
     @objc private func addNoteTapped() {
-        navigationController?.pushViewController(AddNoteViewController(),
-                                                 animated: false)
+        navigationController?.pushViewController(
+            AddNoteViewController(),
+            animated: false
+        )
     }
 }
 
@@ -182,9 +184,7 @@ extension NoteListViewController: NSFetchedResultsControllerDelegate {
         switch type {
         case .insert:
             if let newIndexPath = newIndexPath {
-                //                if tableView.isOnWindow {
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
-                //                }
             }
         case .delete:
             if let indexPath = indexPath {
