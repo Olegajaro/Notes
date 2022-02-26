@@ -51,6 +51,7 @@ class NoteListViewController: UIViewController {
         setupNavigationBar()
         setup()
         setupFetchResultController()
+        setInitialObject()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -95,6 +96,17 @@ extension NoteListViewController {
             try fetchResultController.performFetch()
         } catch {
             print(error.localizedDescription)
+        }
+    }
+    
+    private func setInitialObject() {
+        if fetchResultController.fetchedObjects?.count == 0 {
+            let object = Note()
+            
+            object.noteName = "New note"
+            object.noteText = "Create new note"
+            
+            CoreDataManager.shared.saveContext()
         }
     }
     
