@@ -63,7 +63,8 @@ extension NoteListViewController {
     private func setup() {
         navigationItem.title = "Notes"
         
-        tableView.backgroundColor = .systemBackground
+        tableView.backgroundColor = UIColor(named: "TableViewBackgroundColor")
+        tableView.layer.cornerRadius = 30
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -73,9 +74,15 @@ extension NoteListViewController {
         )
         tableView.rowHeight = NoteListCell.rowHeight
         
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
-        
-        tableView.frame = view.bounds
+//        tableView.frame = view.bounds
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
     
     private func setupNavigationBar() {

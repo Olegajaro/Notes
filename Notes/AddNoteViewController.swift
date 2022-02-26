@@ -91,21 +91,27 @@ extension AddNoteViewController {
     private func style() {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.spacing = 20
+        stackView.spacing = 10
         
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Welcome"
         label.font = UIFont.preferredFont(forTextStyle: .title1)
         
         noteNameTextField.translatesAutoresizingMaskIntoConstraints = false
-        noteNameTextField.borderStyle = .roundedRect
         noteNameTextField.font = UIFont.preferredFont(forTextStyle: .title1)
         noteNameTextField.placeholder = "Enter note title"
+        noteNameTextField.backgroundColor = UIColor(named: "ChatIncomingBubble")
         noteNameTextField.setContentHuggingPriority(UILayoutPriority(251), for: .vertical)
+        noteNameTextField.layer.cornerRadius = 10
+        noteNameTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: noteNameTextField.frame.height))
+        noteNameTextField.leftViewMode = .always
         
         noteTextTextView.translatesAutoresizingMaskIntoConstraints = false
         noteTextTextView.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         noteTextTextView.autocapitalizationType = .none
+        noteTextTextView.backgroundColor = UIColor(named: "ChatIncomingBubble")
+        noteTextTextView.contentInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+        noteTextTextView.layer.cornerRadius = 10
     }
     
     private func layout() {
