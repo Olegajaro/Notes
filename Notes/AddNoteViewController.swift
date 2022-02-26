@@ -9,6 +9,7 @@ import UIKit
 
 class AddNoteViewController: UIViewController {
     
+    // MARK: - UI Elements
     let stackView = UIStackView()
     let noteNameTextField = UITextField()
     let noteTextTextView = UITextView()
@@ -27,6 +28,7 @@ class AddNoteViewController: UIViewController {
     
     var note: Note?
     
+    // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,6 +43,7 @@ class AddNoteViewController: UIViewController {
         }
     }
     
+    // MARK: - Actions
     @objc private func saveTapped() {
         if saveNote() {
             navigationController?.popViewController(animated: true)
@@ -79,10 +82,12 @@ class AddNoteViewController: UIViewController {
     }
 }
 
+// MARK: - Setup Views
 extension AddNoteViewController {
     private func setupNavigationBar() {
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationItem.title = "Add note"
+        navigationController?.navigationBar.tintColor = .label
         navigationItem.rightBarButtonItem = saveNoteBarButtonItem
     }
     

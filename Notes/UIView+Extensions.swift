@@ -14,7 +14,7 @@ extension UIView {
         var view = self
         
         while view.superview != nil {
-            view = view.superview!
+            view = view.superview ?? UIView()
         }
         
         return view

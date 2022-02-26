@@ -61,7 +61,8 @@ class NoteListCell: UITableViewCell {
                 multiplier: 1
             ),
             noteTextLabel.leadingAnchor.constraint(
-                equalToSystemSpacingAfter: leadingAnchor, multiplier: 2
+                equalToSystemSpacingAfter: leadingAnchor,
+                multiplier: 2
             ),
             trailingAnchor.constraint(
                 equalToSystemSpacingAfter: noteTextLabel.trailingAnchor,
