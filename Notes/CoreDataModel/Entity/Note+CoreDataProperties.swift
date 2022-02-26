@@ -18,7 +18,7 @@ extension Note {
 
     @NSManaged public var noteName: String?
     @NSManaged public var noteText: String?
-
+    @NSManaged public var date: Date?
 }
 
 extension Note : Identifiable {

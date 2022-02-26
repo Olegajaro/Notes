@@ -12,7 +12,7 @@ class NoteListViewController: UIViewController {
     
     struct Constans {
         static let entity = "Note"
-        static let sortName = "noteName"
+        static let sortName = "date"
     }
     
     // MARK: - UI Elements
