@@ -85,7 +85,7 @@ class AddNoteViewController: UIViewController {
 // MARK: - Setup Views
 extension AddNoteViewController {
     private func setupNavigationBar() {
-        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.largeTitleDisplayMode = .never
         navigationItem.title = "Add note"
         navigationController?.navigationBar.tintColor = .label
         navigationItem.rightBarButtonItem = saveNoteBarButtonItem

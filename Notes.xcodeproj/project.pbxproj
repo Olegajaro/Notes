@@ -70,13 +70,11 @@
 			isa = PBXGroup;
 			children = (
 				1039AE6327C89B2B00201874 /* AppDelegate.swift */,
-				1039AE6727C89B2B00201874 /* NoteListViewController.swift */,
-				1039AE8827C8B0DD00201874 /* AddNoteViewController.swift */,
-				1039AE8627C8A60B00201874 /* NoteListCell.swift */,
+				10D8070927CC984F008B9C52 /* ViewControllers */,
 				1039AE8227C89FAD00201874 /* Services */,
 				1039AE8027C89F5300201874 /* CoreDataModel */,
+				10D8070B27CC9871008B9C52 /* Extensions */,
 				1039AE8527C89FD200201874 /* Files */,
-				10F45B2D27C95536007442C0 /* UIView+Extensions.swift */,
 			);
 			path = Notes;
 			sourceTree = "<group>";
@@ -115,6 +113,32 @@
 				1039AE7427C89B2B00201874 /* Info.plist */,
 			);
 			path = Files;
+			sourceTree = "<group>";
+		};
+		10D8070927CC984F008B9C52 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				10D8070A27CC985A008B9C52 /* NoteList */,
+				1039AE8827C8B0DD00201874 /* AddNoteViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		10D8070A27CC985A008B9C52 /* NoteList */ = {
+			isa = PBXGroup;
+			children = (
+				1039AE6727C89B2B00201874 /* NoteListViewController.swift */,
+				1039AE8627C8A60B00201874 /* NoteListCell.swift */,
+			);
+			path = NoteList;
+			sourceTree = "<group>";
+		};
+		10D8070B27CC9871008B9C52 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				10F45B2D27C95536007442C0 /* UIView+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -53,11 +53,6 @@ class NoteListViewController: UIViewController {
         setupFetchResultController()
         setInitialObject()
     }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.navigationBar.prefersLargeTitles = true
-    }
 }
 
 // MARK: - Setup Views
@@ -86,6 +81,7 @@ extension NoteListViewController {
     }
     
     private func setupNavigationBar() {
+        navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItem = addNoteBarButtonItem
     }
     
@@ -195,9 +191,7 @@ extension NoteListViewController: NSFetchedResultsControllerDelegate {
     ) {
         switch type {
         case .insert:
-            if let newIndexPath = newIndexPath {
-                tableView.insertRows(at: [newIndexPath], with: .automatic)
-            }
+            tableView.reloadData()
         case .delete:
             if let indexPath = indexPath {
                 tableView.deleteRows(at: [indexPath], with: .automatic)
